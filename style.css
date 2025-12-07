@@ -1,0 +1,176 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 3D 視角 */
+  perspective: 80vmin;
+}
+
+/* 整棵樹容器 */
+.tree {
+  position: relative;
+  height: 50vmin;
+  width: 1px;
+  transform-style: preserve-3d;
+
+  /* 整棵樹繞 Y 軸旋轉 */
+  animation: spin 6s linear infinite;
+}
+
+/* 星星 */
+.tree__star {
+  position: absolute;
+  bottom: 100%;           /* 剛好在樹上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4vmin;
+  color: #ffe66d;
+  text-shadow: 0 0 10px #ffe66d, 0 0 20px #ffe66d;
+
+  /* 自己再旋轉一圈（Z 軸轉） */
+  animation: star-spin 2s linear infinite;
+}
+
+/* 每一顆燈泡 */
+.tree__light {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1.2vmin;
+  height: 1.2vmin;
+  border-radius: 50%;
+  background: var(--color, red);   /* 用變數控制紅 / 白 */
+  box-shadow: 0 0 10px var(--color, red);
+  transform-style: preserve-3d;
+
+  /* 高度越高半徑越小，做成錐形 */
+  --radius: calc((100 - var(--y)) * 0.12vmin);
+
+  /*
+    1. X 往左 50% → 換到樹中心
+    2. Y 往上移：y 值越大越高
+    3. 繞 Y 軸旋轉 → 螺旋角度
+    4. Z 軸推出去 → 圓周排列
+  */
+  transform:
+    translateX(-50%)
+    translateY(calc(var(--y) * -0.45vmin))
+    rotateY(calc(var(--rotate) * 1deg))
+    translateZ(var(--radius));
+}
+
+/* 樹旋轉 */
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* 星星旋轉（Z 軸，像是自己在轉） */
+@keyframes star-spin {
+  from {
+    transform: translateX(-50%) rotateZ(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotateZ(360deg);
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 3D 視角 */
+  perspective: 80vmin;
+}
+
+/* 整棵樹容器 */
+.tree {
+  position: relative;
+  height: 50vmin;
+  width: 1px;
+  transform-style: preserve-3d;
+
+  /* 整棵樹繞 Y 軸旋轉 */
+  animation: spin 6s linear infinite;
+}
+
+/* 星星 */
+.tree__star {
+  position: absolute;
+  bottom: 100%;           /* 剛好在樹上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4vmin;
+  color: #ffe66d;
+  text-shadow: 0 0 10px #ffe66d, 0 0 20px #ffe66d;
+
+  /* 自己再旋轉一圈（Z 軸轉） */
+  animation: star-spin 2s linear infinite;
+}
+
+/* 每一顆燈泡 */
+.tree__light {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1.2vmin;
+  height: 1.2vmin;
+  border-radius: 50%;
+  background: var(--color, red);   /* 用變數控制紅 / 白 */
+  box-shadow: 0 0 10px var(--color, red);
+  transform-style: preserve-3d;
+
+  /* 高度越高半徑越小，做成錐形 */
+  --radius: calc((100 - var(--y)) * 0.12vmin);
+
+  /*
+    1. X 往左 50% → 換到樹中心
+    2. Y 往上移：y 值越大越高
+    3. 繞 Y 軸旋轉 → 螺旋角度
+    4. Z 軸推出去 → 圓周排列
+  */
+  transform:
+    translateX(-50%)
+    translateY(calc(var(--y) * -0.45vmin))
+    rotateY(calc(var(--rotate) * 1deg))
+    translateZ(var(--radius));
+}
+
+/* 樹旋轉 */
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* 星星旋轉（Z 軸，像是自己在轉） */
+@keyframes star-spin {
+  from {
+    transform: translateX(-50%) rotateZ(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotateZ(360deg);
+  }
+}
